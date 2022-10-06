@@ -1,14 +1,18 @@
 package Models;
 
+import Controllers.Controller;
+
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Server extends Thread{
+    private final Controller controller;
     private final LinkedBlockingQueue<Customer> recipients;
     private final LinkedBlockingQueue<Order> ordersToServer;
     private int count;
-    public Server(LinkedBlockingQueue<Customer> recipients, LinkedBlockingQueue<Order> ordersToServer)
+    public Server(Controller controller,LinkedBlockingQueue<Customer> recipients, LinkedBlockingQueue<Order> ordersToServer)
     {
         super();
+        this.controller=controller;
         this.recipients=recipients;
         this.ordersToServer=ordersToServer;
     }
@@ -19,6 +23,7 @@ public class Server extends Thread{
             while(true) {
                 System.out.println("Server is start");
                 Order nowOrder = ordersToServer.take();
+                controller.updateTextOrderNumberAvailablePickup(String.valueOf(nowOrder.getOderNumber()));
                 System.out.println("Server Order: <--");
                 count++;
                 Customer customer=recipients.take();

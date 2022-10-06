@@ -1,5 +1,8 @@
 package com.example.fastfoodsimulatorfx;
 
+import Controllers.Controller;
+import Controllers.HelloController;
+import Models.FastFood;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

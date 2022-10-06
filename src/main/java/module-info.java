@@ -12,4 +12,6 @@ module com.example.fastfoodsimulatorfx {
 
     opens com.example.fastfoodsimulatorfx to javafx.fxml;
     exports com.example.fastfoodsimulatorfx;
+    exports Controllers;
+    opens Controllers to javafx.fxml;
 }
