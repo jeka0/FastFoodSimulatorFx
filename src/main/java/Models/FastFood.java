@@ -47,7 +47,7 @@ public class FastFood {
                 controller.updateTextNumberOfCustomers(String.valueOf(customersToOrder.size()));
                 controller.updateTextCountOrders(String.valueOf(ordersToKitchen.size()));
                 controller.updateTextNumberCustomersServingLine(String.valueOf(recipients.size()));
-                sleep(1);
+                sleep(100);
             }
         }catch (InterruptedException interruptedException){}
     }
