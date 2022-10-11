@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 
 public class HelloController implements Controller{
+    private FastFood fastFood;
     @FXML
     public Text NumberOfCustomers;
     @FXML
@@ -22,10 +23,13 @@ public class HelloController implements Controller{
     public Text CurrentlyOrderNumber;
     @FXML
     public ListView ListOrders;
+    public HelloController()
+    {
+        fastFood = new FastFood(this);
+    }
     @FXML
     public void OnActionStart(ActionEvent event)
     {
-        FastFood fastFood = new FastFood(this);
         fastFood.Start();
     }
     public void updateTextNumberOfCustomers(String str)

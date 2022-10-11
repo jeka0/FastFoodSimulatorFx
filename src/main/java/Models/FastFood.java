@@ -7,6 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static java.lang.Thread.sleep;
 
 public class FastFood {
+    public static FastFood fastFood;
     private final Cook cook;
     private final LinkedBlockingQueue<Customer> customersToOrder, recipients;
     private final LinkedBlockingQueue<Order> ordersToKitchen, ordersToServer;
@@ -17,6 +18,7 @@ public class FastFood {
     private final Thread thread;
     public FastFood(Controller controller)
     {
+        fastFood = this;
         this.controller = controller;
         customersToOrder = new LinkedBlockingQueue<>();
         recipients = new LinkedBlockingQueue<>();
