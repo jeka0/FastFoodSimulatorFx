@@ -21,7 +21,6 @@ public class Customer{
     public void enterInRecipients()
     {
         try {
-            System.out.println("Customer enter in recipients");
             recipients.put(this);
         }catch (InterruptedException interruptedException)
         {

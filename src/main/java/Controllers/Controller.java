@@ -7,4 +7,7 @@ public interface Controller {
     void updateTextOrderNumberAvailablePickup(String str);
     void updateTextNumberCustomersServingLine(String str);
     void updateTextCurrentlyOrderNumber(String str);
+    void AddTag(String str);
+    void AddOrder(String orderNum);
+    void RemoveOrder(String orderNum);
 }

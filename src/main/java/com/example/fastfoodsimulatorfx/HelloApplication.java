@@ -16,11 +16,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 800, 400);
+        stage.setTitle("Fast Food Simulator");
         stage.setScene(scene);
-        stage.setOnCloseRequest((WindowEvent windowEvent) ->{
-            if(FastFood.fastFood!=null)FastFood.fastFood.Stop();
+        stage.setOnCloseRequest((WindowEvent windowEvent) -> {
+            if (FastFood.fastFood != null) FastFood.fastFood.Stop();
         });
         stage.show();
     }

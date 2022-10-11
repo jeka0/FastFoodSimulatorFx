@@ -22,18 +22,20 @@ public class OrderTaker extends Thread{
         try
         {
             while(true) {
-                System.out.println("OrderTaker: start");
+                controller.AddTag("OrderTaker: start");
                 String id = createUniqueId();
                 controller.updateTextCurrentlyOrderNumber(id);
-                sleep(200);
-                System.out.println("OrderTaker: " + id);
+                sleep(300);
+                controller.AddTag("OrderTaker: " + id);
                 ordersToKitchen.put(new Order(id));
-                System.out.println("OrderTaker Order: -->");
+                controller.AddOrder(id);
+                controller.AddTag("OrderTaker Order: send order");
                 Customer customer = customersToOrder.take();
-                System.out.println("Customer leve from customersToOrder");
+                controller.AddTag("Customer leve from customersToOrder");
                 customer.setOderNumber(id);
                 customer.enterInRecipients();
-                System.out.println("OrderTaker: end");
+                controller.AddTag("Customer enter in recipients");
+                controller.AddTag("OrderTaker: end");
             }
         }catch (InterruptedException interruptedException)
         {
@@ -43,8 +45,7 @@ public class OrderTaker extends Thread{
 
     private String createUniqueId()
     {
-        //Random random = new Random();
-        return /*Integer.toHexString(random.nextInt(900)+100) + */"#"+ id++;
+        return "#"+ id++;
     }
 
 }

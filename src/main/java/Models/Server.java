@@ -21,14 +21,16 @@ public class Server extends Thread{
     {
         try {
             while(true) {
-                System.out.println("Server is start");
+                controller.AddTag("Server is start");
+                controller.updateTextOrderNumberAvailablePickup("NaN");
                 Order nowOrder = ordersToServer.take();
                 controller.updateTextOrderNumberAvailablePickup(String.valueOf(nowOrder.getOderNumber()));
-                System.out.println("Server Order: <--");
+                controller.AddTag("Server Order: take order");
+                sleep(200);
                 count++;
                 Customer customer=recipients.take();
-                System.out.println("Customer leve from recipients");
-                System.out.println("Server is end");
+                controller.AddTag("Customer leve from recipients");
+                controller.AddTag("Server is end");
             }
         }catch(InterruptedException interruptedException)
         {

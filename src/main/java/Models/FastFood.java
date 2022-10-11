@@ -16,7 +16,7 @@ public class FastFood {
     private final VisitorGenerator visitorGenerator;
     private final Controller controller;
     private final Thread thread;
-    public FastFood(Controller controller)
+    public FastFood(Controller controller, int timeCook, int timeVisitorGenerator)
     {
         fastFood = this;
         this.controller = controller;
@@ -24,12 +24,21 @@ public class FastFood {
         recipients = new LinkedBlockingQueue<>();
         ordersToKitchen = new LinkedBlockingQueue<>();
         ordersToServer = new LinkedBlockingQueue<>();
-        cook = new Cook(controller,ordersToKitchen,ordersToServer,1000);
+        cook = new Cook(controller,ordersToKitchen,ordersToServer,timeCook);
         orderTaker = new OrderTaker(controller,ordersToKitchen,customersToOrder);
         server = new Server(controller,recipients,ordersToServer);
-        visitorGenerator = new VisitorGenerator(controller,customersToOrder, recipients,100);
+        visitorGenerator = new VisitorGenerator(controller,customersToOrder, recipients,timeVisitorGenerator);
         thread = new Thread(this::UpdateQueue);
     }
+    public void setCookTime(int time)
+    {
+        cook.setTime(time);
+    }
+    public void setVisitorGeneratorTime(int time)
+    {
+        visitorGenerator.setTime(time);
+    }
+
     public void UpdateQueue()
     {
         try

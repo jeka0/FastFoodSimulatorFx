@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Cook extends Thread{
     private final Controller controller;
     private final LinkedBlockingQueue<Order> ordersToKitchen, ordersToServer;
-    private int time=2000;
+    private int time;
 
     public int getTime() {
         return time;
@@ -29,14 +29,15 @@ public class Cook extends Thread{
     {
         try {
             while (true) {
-                System.out.println("Cook is start");
+                controller.AddTag("Cook is start");
                 Order nowOrder = ordersToKitchen.take();
-                if(controller!=null)controller.updateTextOrderNumberPrepared(nowOrder.getOderNumber());
-                System.out.println("Cook Order: <--");
+                controller.updateTextOrderNumberPrepared(nowOrder.getOderNumber());
+                controller.RemoveOrder(nowOrder.getOderNumber());
+                controller.AddTag("Cook Order: take order");
                 sleep(time);
                 ordersToServer.put(nowOrder);
-                System.out.println("Cook Order: -->");
-                System.out.println("Cook is end");
+                controller.AddTag("Cook Order: send order");
+                controller.AddTag("Cook is end");
             }
         }catch(InterruptedException interruptedException)
         {
